@@ -1,0 +1,135 @@
+% Homework URL:https://zhuoqing.blog.csdn.net/article/details/145879330
+
+\section{Homework 2}
+
+\subsection{直流和交流分解}
+
+\task{必做题}
+
+(1) $f(t)$是一个周期信号, 其直流分量$\displaystyle f_D(t)=\frac{1}{4}\int_{-2}^{2}f(t)\,\mathrm{d}t=-0.125$
+
+(2) 同样是周期信号, 并且具有对称性.$\displaystyle f_D(t)=\frac{1}{\pi}\int_{0}^{\pi}\sin \frac{t}{2}\,\mathrm{d}t=\frac{1}{2\pi}$
+
+(3) 可看作一个常数和一个积分为$0$的信号的叠加. $\displaystyle f_D(t)=\lim_{T\to\infty}(\frac{1}{2T}\int_{-T}^{T}f(t)\,\mathrm{d}t)=0.5$
+
+(4) 周期信号且具有对称性. $\displaystyle f_D(t)=\frac{1}{0.5}\int_{0}^{0.5}4t^2\,\mathrm{d}t=\frac{1}{3}$.
+
+\subsection{信号奇偶分解}
+
+\task{奇偶分解}
+如图\ref{fig:2-ess-1}所示.
+
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/part2_essential.png}
+    \caption{2.2.1波形}\label{fig:2-ess-1}
+\end{figure*}
+
+\task{求解原信号波形}
+必做题如图\ref{fig:2.2.2-ess}所示.
+
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/part2_solve.png}
+    \caption{2.2.2波形-必做}\label{fig:2.2.2-ess}
+\end{figure*}
+
+\subsection{信号尺度变换}
+必做题和选做题如图\ref{fig:2.3}.
+
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/part3_transform.png}
+    \caption{2.3波形}\label{fig:2.3}
+\end{figure*}
+
+\subsection{LTI系统响应}
+
+\task{必做题}
+当激励为$e_3(t)=\delta(t)=e_1'(t)$时, 由LTI系统的微分特性, 有:
+\begin{align*}
+    y_3(t)&=\frac{\mathrm d}{\mathrm dt}(\cos(3t)\cdot e^{-t}\cdot u(t)) \\
+    &=\delta(t)-u(t)e^{-t}(\cos(3t)+3\sin(3t))
+\end{align*}
+
+激励$e_2=\delta(t-1)$为激励$e_3$的时变后信号, 因此
+\begin{align*}
+    y_2(t)=\delta(t-1)-u(t-1)e^{-t+1}(\cos(3(t-1)) + 3\sin(3(t-1)))
+\end{align*}
+
+\task{选做题}
+(C)$x_2(t)=x_1(t)-x_1(t-2)$, 因此激励$y_2(t)=y_1(t)-y_1(t-2)$.
+
+(D)$x_3(t)=x_1(t+1)+0.5x_1(t)$, 因此激励$y_3(t)=x_1(t+1)+0.5x_1(t)$.
+
+波形如图\ref{fig:2.4-opt}.
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/part4_LTI.png}
+    \caption{2.4波形}\label{fig:2.4-opt}
+\end{figure*}
+
+\subsection{系统的可逆性}
+
+\task{必做题}
+
+(1)不可逆, $e_1[n]=1$和$e_2[n]=\cos(\pi t)$引起的输出相同, 均为$r[n]=1$.
+
+(2)可逆, 逆系统为$r(t)=\displaystyle\frac{1}{2}\left.\frac{\mathrm d}{\mathrm d\tau}e(\tau)\right|_{\tau=\frac{t}{2}}$
+
+(3)可逆, 逆系统为$r(t)=e(-t+2)$, 即系统本身.
+
+(4)不可逆, $e_1(t)=2$和$e_2(t)=-2$均会给出输出$r(t)=8$.
+
+\subsection{系统特性}
+
+\begin{tabular}{|l|l|c|c|c|}
+    \hline
+    序号 & 系统输入输出关系 & 线性? & 时不变? & 因果? \\
+    \hline 
+    $1$ & $r(t)=e(2t)$ & 是 & 否 & 否 \\
+    \hline 
+    $2$ & $r(t)=\frac{\mathrm d}{\mathrm dt}e(t)$ & 是 & 是 & 否 \\
+    \hline 
+    $3$ & $r(t)=e(3-t)$ & 是 & 否 & 否 \\
+    \hline 
+    $4$ & $r(t)=e(0)$ & 是 & 否 & 否 \\
+    \hline 
+    $5$ & $r(t)=e(0.5t)$ & 是 & 否 & 否 \\
+    \hline 
+    $6$ & $r(t)=e(t)\cdot u(t)$ & 是 & 否 & 是 \\
+    \hline 
+    $7$ & $r(t)=t\cdot e(t)$ & 是 & 否 & 是 \\
+    \hline
+\end{tabular}
+
+\subsection{从系统框图到方程}
+(1)$x(t)=3y(t)+4y'(t)+y''(t)$.
+
+(2)$x[n]=\frac{1}{2}y[n-1]+2y[n]+\frac{1}{2}y[n+1]$
+
+(3)设第二个积分系统的输出信号为$f(t)$, 则:
+
+\begin{equation*}
+    \left\{
+        \begin{array}{l}
+            y(t)=f(t)-1.5f'(t) \\
+            x(t) - f'(t) + 3f(t)=f''(t)
+        \end{array}
+    \right.
+\end{equation*}
+
+化简可得: $y''(t)+y'(t)+y(t)=-1.5x'(t)+x(t)$.
+
+(4)设第二个延时系统的输出为$w[t]$, 则:
+
+\begin{equation*}
+    \left\{
+        \begin{array}{l}
+            w[t+2]=x[n]-w[t]-2w[t+1] \\
+            y[n] = w[t]-3w[t+1]+1.5w[t+2]
+        \end{array}
+    \right.
+\end{equation*}
+
+化简可得: $1.5x[n+2]-3x[n+1]+x[n]=y[n+2]+2y[n+1]+y[n]$.
