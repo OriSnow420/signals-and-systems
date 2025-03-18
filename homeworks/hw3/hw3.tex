@@ -1,0 +1,137 @@
+% Homework URL:https://blog.csdn.net/zhuoqingjoking97298/article/details/146051212
+\section{Homework 3}
+
+\subsection{方程求解}
+
+\subsubsection{必做题}
+
+\task{微分方程求解}
+
+(1)将$x(t)=e^{-2t}\cdot u(t)$代入微分方程, 得: $y''+5y'+4y=\delta(t)$. 假设其初始点
+跳变满足$r''=A\delta(t)+B\Delta u(t)$, 则代入方程可解得$A=1, B=-1$, 因此$y(0_+)=
+y(0_-)=2, y'(0_+)=y'(0_-)+1=1$.
+
+方程的通解为$y=C_1e^{-t}+C_2e^{-4t}$, $y'=-C_1e^{-t}-4C_2e^{-4t}$, 代入初始条件:
+
+\begin{equation*}
+    \left\{
+        \begin{array}{l}
+            C_1+C_2=2 \\
+            -C_1-4C_2=1
+        \end{array}
+    \right.
+\end{equation*}
+
+解得$C_1=3, C_2=-1$, 完全响应为$y=3e^{-t}-e^{-4t}$.
+
+(2)自由响应, 稳态响应均为$0$, 强迫相应和瞬态响应均为$y=3e^{-t}-e^{-4t}$. 对于零输入
+响应, 不存在起始点跳变, 因此$y(0_+)=2,y(0_-)=0$, 由此得到的解为$y=\frac{8}{3}e^{-t}
+-\frac{2}{3}e^{-4t}$, 零状态响应为剩下部分$y=\frac{1}{3}e^{-t}-\frac{1}{3}e^{-4t}$
+
+(3)令$x(t)=\delta(t)$, 则$y''+5y'+4y=\delta'(t)+2\delta(t)$, 待定系数解得一特解
+满足$r''=\delta'(t)-3\delta(t)+11\Delta u(t)$. 产生的起始点跳变$\Delta y=1,\Delta 
+y'=-3$, 因此$y(0_+)=1, y'(0_+)=-3$, 可求得解为$h(t)=\frac{1}{3}e^{-t}+\frac{2}{3}
+e^{-4t}$
+
+对于单位阶跃响应, 解的形式为$y=C_1e^{-t}+C_2e^{-4t}+B$, 将$x(t)=u(t)$代入可得: $B=
+\frac{1}{2}$. 令$r''=A\delta(t)+Bu(t)$, 代入方程可解得$a=1, b=-3$, 因此初始条件
+$y(0_+)=0$, $y'(0_+)=a=1$, 因此可待定系数得到解$g(t)=-\frac{1}{6}e^{-4t}-\frac{1}
+{3}e^{-t}+\frac{1}{2}$.
+
+\task{差分方程求解}
+(1)可解得这一差分方程的特征根为$-2,-4$, 因此齐次通解为$y=C_1(-2)^n+C_2(-4)^n$. 非齐
+次特解的一般形式为$y_P=3^nD$, 代入方程可解得$D=\frac{9}{35}$, 因此完全解为$y=C_1(-2)
+^n+C_2(-4)^n+\frac{9}{35}\cdot3^n$. 将初始条件$y[-1],y[-2]$的值可得到$y[0]=-19, 
+y[1]=101$, 代入方程可求出待定系数$C_1=\frac{58}{5}, C_2=-\frac{216}{7}$, 因此方程
+全解为$y[n]=\frac{58}{5}(-2)^n-\frac{216}{7}(-4)^n+\frac{9}{35}\cdot3^n$.
+
+(2)自由响应$\frac{58}{5}(-2)^n-\frac{216}{7}(-4)^n$, 强迫响应为$\frac{9}{35}\cdot
+3^n$. 无瞬态响应, 全响应即为稳态响应.
+
+(3)零输入响应具有形式$y=C_1(-2)^n+C_2(-4)^n$, 由初始条件可得$y[0]=-20, y[1]=104$,
+待定系数可得$y=12(-2)^n-32(-4)^n$, 剩余部分即为零状态响应$y=-\frac{2}{5}(-2)^n+
+\frac{8}{7}(-4)^n+\frac{9}{35}\cdot3^n$.
+
+\task{求解微分方程}
+
+微分方程具有特征根$-1,-2$, 结合激励形式, 可得方程的通解的表达式$C_1e^{-t}+C_2e^{-2t}$
+, 和特解的形式$D_1\cos(2t)+D_2\sin(2t)$. 将特解代入方程可解得$D_1=3,D_2=1$, 因此系统
+完全解为$y=C_1e^{-t}+C_2e^{-2t}+3\cos(2t)+\sin(2t)$. 代入$0_+$时刻的值解出待定系数,
+得到: $$y(t)=2e^{-t}+2^{-2t}+3\cos(2t)+\sin(2t)$$
+
+\subsection{建立系统模型方程}
+
+\subsubsection{必做题}
+
+(1) 由电路原理知识可建立方程:
+\begin{equation*}
+    \left\{
+        \begin{array}{l}
+            i_1'+2i+2q=e \\
+            i_1'=2i_2 \\
+            i = i_1 + i_2 \\
+            i = q' \\
+            u_o=e-i_1'
+        \end{array}
+    \right.
+\end{equation*}
+
+整理上式得到$2\frac{\mathrm d^2}{\mathrm dt^2}u_o(t)+3\frac{\mathrm d}{\mathrm dt
+}u_o(t)+2u_o(t)=\frac{\mathrm d^2}{\mathrm dt^2}e(t)+3\frac{\mathrm d}{\mathrm d
+t}e(t)+2e(t)$.
+
+(2)方程存在通解$e^{-\frac{3}{4}t}(C_1\cos(\frac{\sqrt{7}}{4}t)+C_2\sin(\frac{
+\sqrt{7}}{4}t))$, 令响应$r''=a\delta''(t)+b\delta'(t)+c\delta(t)+d\Delta u(t)$,
+代入方程求解得到$a=\frac{1}{2}, b=\frac{3}{4}, c=-\frac{5}{8}, d=\frac{3}{16}$. 
+由此得到初始条件$u_o(0_+)=b=\frac{3}{4}, u_o'(0_+)=c=-\frac{5}{8}$. 代入得到系数取
+值, 全解为$u_o(t)=e^{-\frac{3}{4}t}(\frac{3}{4}\cos(\frac{\sqrt{7}}{4}t)-\frac{
+\sqrt{7}}{28}\sin(\frac{\sqrt{7}}{4}t))$.
+
+\subsection{系统分析}
+
+\subsubsection{必做题}
+
+(1)系统应当具有特征根$\frac{1}{2}$和$\frac{1}{5}$, 因此方程的形式为$y[n]-\frac{7}{10}
+y[n-1]+\frac{1}{10}y[n-2]=Ax[n]+Bx[n-1]+Cx[n-2]$. 代入$y[0],y[1],y[2]$的值可解得:
+$a=11, b=-\frac{57}{5},c=\frac{14}{5}$. 因此系统的差分方程为$$10y[n]-7y[n-1]+y[n-
+2]=110x[n]-114x[n-1]+28x[n-2]$$
+
+(2)设题目给出的单位阶跃响应的表达式为$f[n]$, 则由系统的LTI性质, $y[n]=2f[n]-2f[n-10]
+=2\{(2^{-n}+4\cdot5^{-n}+6)u[n]-(2^{-n+10}+4\cdot5^{-n+10}+6)u[n-10]\}$
+
+
+
+\subsection{计算卷积}
+
+(1) 
+\begin{align*}
+    f_1(t)*f_2(t)=&\int_{-\infty}^{+\infty}e^{-3\tau}u(\tau)e^{\tau-t}u(t-\tau)
+    \,\mathrm{d}\tau
+\end{align*}
+
+若$t<0$, 则两个$u(t)$不会同时取$1$, 卷积函数值为$0$, 若$t\ge0$, 则结果为$\int_{0}^
+{t}e^{-t-2\tau}\,\mathrm{d}\tau=\frac{1}{2}(e^{-t}-e^{-3t})$.
+
+(2)与(1)同理: 
+\begin{align*}
+    f_1(t)*f_2(t)=\left\{\begin{array}{ll}
+        0 &t<0 \\
+        t\sin(3t)& t\ge0
+    \end{array}\right.
+\end{align*}
+
+(3)通过对两个函数取值范围的分析, 可知卷积函数仅在$[0.5,2]$中取值, 有:
+$$\int_{\max\{0,t-1\}}^{\min\{1,t-0.5\}}\tau\,\mathrm{d}\tau=
+\left\{\begin{array}{ll}
+    \frac{1}{2}(t-0.5)^2 & 0.5 < t \le 1 \\
+    \frac{1}{2}[(t-0.5)^2-(t-1)^2] & 1 < t \le 1.5 \\
+    \frac{1}{2}[1-(t-1)^2] & 1.5 < t \le 2 \\
+    0 & \text{else}
+\end{array}\right.$$
+
+(4)\begin{align*}
+    f_1*f_2=&\int_{-\infty}^{+\infty}\cos(\omega \tau+\frac{\pi}{4})\delta(3(t-\tau))\,\mathrm{d}\tau \\
+    =&-3\int_{-\infty}^{+\infty}\cos(\omega(t-\frac{\lambda}{3})+\frac{\pi}{4})\delta(\lambda)\,\mathrm{d}\lambda \\
+    =&-3\cos(\omega t+\frac{\pi}{4})
+\end{align*}
+
