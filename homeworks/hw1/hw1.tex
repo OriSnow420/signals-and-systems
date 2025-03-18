@@ -1,0 +1,121 @@
+% Homework URL: https://zhuoqing.blog.csdn.net/article/details/145734459
+
+\section{Homework 1}
+
+\subsection{绘制信号波形}
+
+必做题波形如图\ref{fig:ess1}所示.
+
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/essential.png}
+    \caption{必做波形}\label{fig:ess1}
+\end{figure*}
+
+对于离散时间信号$f[n]=\sin(\frac{\pi}{5}n^2)$, 由图形猜想其为周期信号. 假设其为周期信号, 周期为$T$, 则有:
+
+\begin{equation*}
+    f[n + T] = \sin(\frac{\pi}{5}n^2 + \frac{2T\pi}{5}n + \frac{T^2\pi}{5})=f[n]=\sin(\frac{\pi}{5}n^2)
+\end{equation*}
+
+因此$\forall n \in \mathbb{N}, \frac{T^2+2T}{5}\pi=2k\pi, k\in\mathbb{N}\Rightarrow 10|T^2+2T$. $T=10$为满足条件的最小$T$, 因此其为一个周期为$10$的周期信号.
+
+选做题波形如图\ref{fig:opt1}所示.
+
+\begin{figure*}[htbp] 
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/optional.png}
+    \caption{选做波形}\label{fig:opt1}
+\end{figure*}
+
+\subsection{写出函数信号表达式}
+
+\stepcounter{task}
+\task{必做题}
+
+(1)$f(t)=(2t+2) \cdot u(-t(t+1)) + (2-t) \cdot u(-t(t-2))$.
+
+(2)$f(t)=0.7u(t) + 0.8u(t-1.2) + 0.5u(t-2)$.
+
+(3)$f(t)=(\frac{1}{2}\cos(t)+\frac{1}{2})\cdot u(\pi^2 - t^2)$.
+
+(4)$f(t)=\sin(3\pi t)\cdot e^{-(\frac{t}{2})^2}$.
+
+\task{选做题}
+
+(1)$f(t)=u(\cos t)$.
+
+(2)$f(t)=u(t)-\sum_{n=1}^{\infty}(2^{-n}\cdot u(t-1+2^{-n}))$
+
+\subsection{判断信号的周期性}
+
+\stepcounter{task}
+\task{必做题}
+
+(1)$\sin(\pi t)$的周期为$2$, $\cos(3.8\pi t)$的周期为$\frac{10}{19}$, 两信号周期之比为有理数, 因此合信号也为周期信号, 周期为$10$.
+
+(2)$1+\cos (2\pi t)$的周期为$1$, $e^{-j0.1t}$的周期为$20\pi$, 良心好周期之比为无理数, 乘积信号不为周期信号.
+
+(3)$\cos(5\pi t)$的周期为$\frac{2}{5}$, 由三角函数的特性, 取绝对值后周期减半, 为$\frac{1}{5}$.
+
+(4)$f(t)=\frac{\cos(4t + \frac{2\pi}{3}) + 1}{2}$, 周期为$\frac{1}{2}$.
+
+(5)余弦函数内部为一个非线性非周期函数, 结果是非周期的.
+
+(6)设存在周期$T$, 则: $f[n+T]=\sin(\frac{\pi}{5}(n^3+3n^2T+3nT^2+T^3))$, 因此有$\forall n\in\mathbb{N}, 10|3n^2T+3nT^2+T^3, k\in\mathbb{Z}$, $10$为满足条件的最小$T$. 因此这是一个周期信号, 周期为$10$.
+
+\task{选做题}
+(1) 不为周期信号. 直接讨论一般情况: 设$f[n]=\sin(\omega n)$是一个周期信号, 周期为$T$, 则有$f[n+T]=\sin(\omega n + \omega T)$, 即$\omega T = 2k\pi, k\in\mathbb{N}_+$, 因此$\frac{\omega}{\pi} = \frac{2k}{T} \in \mathbb{Q}$. 因此只有当$\omega$为$\pi$的有理数倍时$f[n]$才是一个周期信号. $\frac{3}{8}$不满足条件, 因此不为周期信号.
+
+(2) 均为正确.
+
+(3)
+\begin{itemize}
+    \item 不一定. $y[n]$为周期信号只能给出$x[n]$在$n$满足$3|n$处的信息, 剩下的值没有信息, 也便无从判断是否是周期信号.
+    \item 是. 设$x[n]$的周期为$T$, 则$y[n+T]=x[3n + 3T]=x[3n]=y[n]$. 特别地, 若$n/3$为整数, 则其也将是$y[n]$的周期.
+\end{itemize}
+
+\subsection{冲激信号特性}
+
+\stepcounter{task}
+\task{必做题}
+
+(1)
+\begin{align*}
+    A&=\int_{-\infty}^{+\infty}\sin(\tau + \frac{\pi}{4})\cdot \delta(\frac{\tau}{2})\,\mathrm{d}\tau \\
+    &=2\int_{-\infty}^{+\infty}\sin(2t+\frac{\pi}{4})\cdot\delta(t)\,\mathrm{d}t \\
+    &=\sqrt{2}
+\end{align*}
+
+(2)
+\begin{align*}
+    A&=\int_{-\infty}^{+\infty}e^{-\tau}\cdot\delta(\tau-3)\,\mathrm{d}\tau \\
+    &=e^{-3}
+\end{align*}
+
+(3)
+\begin{align*}
+    A&=\int_{-\infty}^{+\infty}\delta(t-t_0)\cdot u(t - \frac{t_0}{4})\,\mathrm{d}\tau \\
+    &=u(\frac{3t_0}{4})=
+    \left\{\begin{array}{l}
+        1, \qquad t_0\ge0 \\
+        0, \qquad t_0<0
+    \end{array}\right.
+\end{align*}
+
+\task{选做题}
+
+(1)
+\begin{align*}
+    A&=-\left.\frac{\mathrm{d}}{\mathrm{d}t}[3e^{-t}+\sin(2t)]\right|_{t=0}=1
+\end{align*}
+
+(2)
+\begin{align*}
+    A=e^{-2j\omega\cdot0}+e^{-2j\omega t_0}=1+e^{-2j\omega t_0}
+\end{align*}
+
+(3)
+\begin{align*}
+    A=e^{-2\cdot1}+-2e^{-2\cdot0}=e^{-2}-2
+\end{align*}
