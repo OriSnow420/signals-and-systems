@@ -1,24 +1,33 @@
 import sys
+
 sys.path.append("../../..")
 import matplotlib.pyplot as plt
 import numpy as np
 from toolkit.tools import *
 
-plt.rc('text', usetex=True)
+plt.rc("text", usetex=True)
+
 
 def fun_1(x):
-    return np.piecewise(x, [
-        x < -1, (x >= -1) & (x < 0), x >= 0
-    ], [
-        lambda x: 0, lambda x: 2 * x + 2, lambda x: 0
-    ])
+    return np.piecewise(
+        x,
+        [x < -1, (x >= -1) & (x < 0), x >= 0],
+        [lambda x: 0, lambda x: 2 * x + 2, lambda x: 0],
+    )
+
 
 def fun_2(x):
-    return np.piecewise(x, [
-        (x < -1.5) & (x > 1.5), (x >= -1.5) & (x <= -1.0), (x <= 1.5) & (x >= 1.0), (x > -1.0) & (x < 1.0)
-    ], [
-        lambda x: 0, lambda x: 2 * x + 3, lambda x: -2 * x + 3, lambda x: 1
-    ])
+    return np.piecewise(
+        x,
+        [
+            (x < -1.5) & (x > 1.5),
+            (x >= -1.5) & (x <= -1.0),
+            (x <= 1.5) & (x >= 1.0),
+            (x > -1.0) & (x < 1.0),
+        ],
+        [lambda x: 0, lambda x: 2 * x + 3, lambda x: -2 * x + 3, lambda x: 1],
+    )
+
 
 fig, axs = plt.subplots(1, 2)
 
