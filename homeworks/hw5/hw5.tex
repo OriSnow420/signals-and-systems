@@ -1,0 +1,187 @@
+% Homework URL: https://zhuoqing.blog.csdn.net/article/details/146358910
+
+\section{Homework 5}
+
+\subsection{傅里叶级数分解}
+
+\subsubsection{傅里叶级数分解与频谱}
+
+\task{必做题}
+
+(1) 
+\begin{align*}
+    F_k&=\displaystyle\frac{1}{2\pi}\int_{-\pi}^{\pi}x(t)e^{-jk\omega_0t}\,\mathrm{d}t=\frac{1}{k\pi}(2\sin\frac{k\pi}{2}-\sin{k\pi}) \\
+    &= \left\{
+        \begin{array}{ll}
+            \frac{2}{k\pi} & k\equiv1(\bmod 4) \\
+            -\frac{2}{k\pi} & k\equiv3(\bmod 4) \\
+            0 & \text{otherwise}
+        \end{array}
+    \right.
+\end{align*}
+
+由$F_k$的值, 有$a_k=F_k+F_{-k}=\left\{\begin{array}{ll}
+    \frac{4}{k\pi} & k\equiv1(\bmod 4) \\
+    -\frac{4}{k\pi} & k\equiv3(\bmod 4) \\
+    0 & \text{otherwise}
+\end{array}\right.$, $b_k=-j(F_k-F_{-k})=0$, $c_k=\sqrt{a_k^2+b_k^2}=\left\{\begin{array}{ll}
+    \frac{16}{k^2\pi^2} & k \equiv 1 (\bmod 2) \\
+    0 & k \equiv 0 (\bmod 2)
+\end{array}\right.$, $\theta_k=\left\{\begin{array}{ll}
+    -\frac{\pi}{2} & k \equiv 1 (\bmod 4) \\
+    \frac{\pi}{2} & k \equiv 3 (\bmod 4) \\
+    0 & \text{otherwise}
+\end{array}\right.$
+
+双边频谱如图\ref{fig:5-1-1(1)}所示.
+
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/5-1-1-1.png}
+    \caption{5.1.1(1)-波形}\label{fig:5-1-1(1)}
+\end{figure*}
+
+(2)
+\begin{align*}
+    f(t)&=[1+\cos(2\pi t)]\cdot\cos(6\pi t + \frac{\pi}{4})\\
+    &=\cos(4\pi t + \frac{\pi}{4}) + \cos(6\pi t + \frac{\pi}{4}) + \cos(8\pi t + \frac{\pi}{4}) \\
+    &=\frac{\sqrt{2}}{2}\left(
+        \cos4\pi t + \cos6\pi t + \cos8\pi t - \sin4\pi t - \sin6\pi t - \sin8\pi t
+    \right) \\
+    &=\frac{\sqrt{2}}{2}[(\frac{1}{2}+j\frac{1}{2})(e^{j6\pi t}+e^{-j8\pi t}+e^{j8\pi t})+(\frac{1}{2}-j\frac{1}{2})(e^{-j4\pi t}+e^{j4\pi t}+e^{-j6\pi t}+)]
+\end{align*} 
+
+因此得到$c_2=c_3=c_4=1,\theta_2=\theta_3=\theta_4=\frac{\pi}{4},a_2=a_3=a_4=b_2=b_3=b_4=\frac{\sqrt{2}}{2}$\\
+$F_2=F_3=F_4=\frac{1}{2}+j\frac{1}{2}$, $F_{-2}+F_{-3}+F_{-4}=\frac{1}{2}-j\frac{1}{2}$, 剩余的各项均为$0$.
+
+双边波形如图\ref{fig:5-1-1(2)}所示.
+
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/5-1-1-2.png}
+    \caption{5.1.1(2)-波形}\label{fig:5-1-1(2)}
+\end{figure*}
+
+(3)
+
+\begin{align*}
+    F_k&=\int_{-1.5}^{0.5}f(t)e^{-j\cdot k\pi t}\,\mathrm{d}t \\
+    &=1-\frac{1}{2}\cos k\pi=\left\{\begin{array}{ll}
+        0.5 & k \equiv 0 (\bmod 2) \\
+        1.5 & k \equiv 1 (\bmod 2)
+    \end{array}\right.
+\end{align*}
+
+$a_k=F_k+F_{-k}=\left\{\begin{array}{ll}
+    1 & k \equiv 0 (\bmod 2) \\
+    3 & k \equiv 1 (\bmod 2)
+\end{array}\right.$, $b_k=j(F_k-F_{-k})=0$, $c_k=\sqrt{a_k^2+b_k^2}=\left\{\begin{array}{ll}
+    1 & k \equiv 0 (\bmod 2) \\
+    9 & k \equiv 1 (\bmod 2)
+\end{array}\right.$, $\theta_k=-\frac{\pi}{2}$.
+
+双边波形如图\ref{fig:5-1-1(3)}所示.
+
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/5-1-1-3.png}
+    \caption{5-1-1(3)波形}\label{fig:5-1-1(3)}
+\end{figure*}
+
+\subsubsection{绘制周期信号频谱}
+
+\begin{align*}
+    f(t)=&0.5+\cos t + 2 \sin t + 2 \cos (2t+\frac{\pi}{4}) + \sin (3t + \frac{\pi}{6}) - \cos(5t + \frac{\pi}{3}) \\
+    =&0.5+\cos t + 2\sin t + \sqrt{2}\cos 2t + \sqrt{2}\sin 2t + \frac{1}{2}\cos 3t + \frac{\sqrt{3}}{2}\sin 3t - \frac{1}{2}\cos 5t + \frac{\sqrt{3}}{2}\sin 5t \\
+    =&0.5+(\frac{1}{2}-j)e^{jt}+(\frac{1}{2}+j)e^{-jt}+\frac{\sqrt{2}}{2}((1-j)e^{j\cdot2t}+(1+j)e^{-j\cdot2t}) \\
+    &\frac{1}{4}((1-j\sqrt{3})e^{j\cdot3t}+(1+j\sqrt{3})e^{-j\cdot3t})+\frac{1}{4}((-1-j\sqrt{3})e^{j\cdot5t}+(-1+j\sqrt{3})e^{-j\cdot5t})
+\end{align*}
+
+频谱如图\ref{fig:5-1-2}.
+
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/5-1-2.png}
+    \caption{5-1-2波形}\label{fig:5-1-2}
+\end{figure*}
+
+\subsection{波形与频谱关系}
+
+\subsubsection{信号中的谐波分量}
+
+\task{必做题}
+
+由于此系统是线性系统, 输出信号中是否有某一频率的分量取决于输入信号中是否有相应的频率分量. 对于输入信号, 有:
+
+\begin{align*}
+    F_k=&\int_{0}^{\SI{10}{\mu s}}x(t)e^{-jk\omega_0t}\,\mathrm{d}t \\
+    =&\frac{j}{k\omega_0}\left(1-e^{-jk\cdot\frac{4}{3}\pi}\right)
+\end{align*}
+
+对于输入信号不存在的频率分量有$F_k=0$, 得到$k=3n,n\in\mathbb{Z}$, 因此输入信号不存在$\SI{300}{kHz}$频率分量.
+得到结论: 输出信号中存在$\SI{100}{kHz},\SI{200}{kHz},\SI{400}{kHz},\SI{500}{kHz}$的频率分量.
+
+\subsubsection{补全周期信号}
+
+对于(1)的奇谐信号和(2)的偶谐信号, 分别有如下性质:
+
+(1) $f(t+\frac{T}{2})=-f(t)$
+
+(2) $f(t+\frac{T}{2})=f(t)$
+
+由此可以根据对称性补全周期信号在一个周期内的波形, 如图\ref{fig:5-2-2}所示.
+
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/5-2-2.png}
+    \caption{5-2-2波形}\label{fig:5-2-2}
+\end{figure*}
+
+\subsubsection{波形分析}
+
+(1)
+
+设此信号占空比为$\lambda$, 则其直流分量为$(5\lambda) \mathrm {V}$. 对其作Fourier级数分解有:
+
+\begin{align*}
+    F_k=\int_{0}^{T}f(t)e^{-jk\omega_0t}\,\mathrm{d}t = \frac{j}{k\omega_0}(1-e^{-jk\cdot2\pi(1-\lambda)})
+\end{align*}
+
+令$k=3n$, 则$F_{3n}=0\Rightarrow\forall n \in \mathbb{Z}, 3n(1-\lambda)\in\mathbb{Z}$, 则$\lambda=\frac{1}{3}$或$\lambda=\frac{2}{3}$,
+因此其直流分量为$5/3\si{V}$或$10/3\si{V}$
+
+\subsubsection{判断波形谐波分量特性}
+
+\begin{enumerate}
+    \item $f(t)$是奇谐偶信号, 存在$\cos$分量和奇次谐波分量; $F_n$随$n$增加以大致$\frac{1}{n^2}$衰减.
+    \item $f(t)$是奇谐信号, 存在$\sin$分量, $\cos$分量和奇次谐波分量; $F_n$随$n$增加以大致$\frac{1}{n^2}$衰减.
+    \item $f(t)$是奇谐奇信号, 存在$\sin$分量和奇次谐波分量; $F_n$随$n$增加以大致$\frac{1}{n}$衰减.
+    \item $f(t)$是偶信号, 存在$\cos$分量和奇次谐波, 偶次谐波分量; $F_n$随$n$增加以大致$\frac{1}{n^3}$衰减.
+    \item $f(t)$是偶信号, 存在$\cos$分量和奇次谐波, 偶次谐波分量; $F_n$仅在有限范围内取值.
+    \item $f(t)$是不具有对称性, 存在$\cos$, $\sin$分量奇次谐波和偶次谐波分量; $F_n$随$n$增加以大致$\frac{1}{n^2}$衰减.
+    \item $f(t)$是偶谐奇信号, 存在$\sin$分量和偶次谐波分量; $F_n$随$n$增加以大致$\frac{1}{n}$衰减.
+    \item $f(t)$是偶信号, 存在$\cos$分量和奇次谐波, 偶次谐波分量; $F_n$随$n$增加以大致$\frac{1}{n^2}$衰减.
+\end{enumerate}
+
+\subsection{傅里叶级数性质}
+
+\task{必做题}
+
+\begin{align*}
+    G_n=\frac{1}{T_0}\int_{0}^{T_0}f(t+t_0)e^{-jn\omega_0t}\,\mathrm{d}t=e^{jn\omega_0t_0}\frac{1}{T_0}\int_{-t_0}^{T_0-t_0}f(t)e^{-jn\omega_0t}\,\mathrm{d}t=F_n\cdot e^{j\omega t_0}
+\end{align*}
+
+\task{选做题}
+
+\begin{align*}
+    f(t)=&a_0+\sum_{n=1}^{+\infty}(a_n\cos nt+b_n\sin nt) \\
+    f'(t)=&\sum_{n=1}^{+\infty}(-a_nn\sin nt + b_nn \cos nt)
+\end{align*}
+
+对照$f'(t)$的Fourier级数表达式$\displaystyle f'(t)=a'_0+\sum_{n=1}^{+\infty}(a'_n\cos nt+b'_n\sin nt)$可得:\\
+$a_0'=0,a_n'=nb_n,b'_n=-na_n$.
+
+\subsection{周期信号分析}
+
+由于$T=4$, 则$B=\frac{2\pi}{T}=\frac{\pi}{2}$. 由于Fourier级数只存在$\sin$系数, $x(t)$是奇函数, 则不妨令$C=0$. 
+则$x(t)=A\sin\frac{\pi}{2}t=b_1\sin\frac{\pi}{2}t$, 得到$A>0$. 单个周期内的能量$\displaystyle \int_{-2}^{2}|x(t)|^2\,\mathrm{d}t=\int_{-2}^{2}\frac{A^2}{2}(1-cos\pi t)=2A^2=2\Rightarrow A=1$, 因此$x(t)=\sin\frac{\pi}{2}t$.

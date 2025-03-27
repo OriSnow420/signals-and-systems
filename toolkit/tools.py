@@ -110,6 +110,16 @@ def draw_discrete_signal(ax, fun, domain, title, mark_points=[]):
         ax.scatter([point], [value], color='red')
         ax.annotate(f'({point:.2f}, {value:.2f})', xy=(point, value),
                     xytext=(point + 0.1, value), fontsize=16)
+        
+def draw_discrete_list(ax, codomain, domain, title):
+    ax.grid(True)
+    ax.set_xlabel(r"$n$")
+    ax.set_ylabel(r"$f[n]$")
+    ax.set_title(title)
+
+    print(codomain)
+    ax.stem(domain, codomain)
+    
 
 def iterative_solve_convolution(fun_x, fun_y, num):
     result = []
