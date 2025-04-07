@@ -1,0 +1,60 @@
+% Homework URL: 
+
+\section{Homework 6}
+
+\subsection{傅里叶变换}
+
+\task{必做题}
+
+(1) 对$f(t)$做Fourier变换得到$F(\omega)=\frac{jE}{\omega\tau}[e^{-j\omega\tau}+\frac{j}{\omega}(1-e^{j\omega t})]$, $|F(\omega)|=\frac{E}{\omega\tau}\\\sqrt{1+|\frac{2}{\omega}\sin\frac{\omega\tau}{2}|}$. 频度谱如图\ref{fig:6-1-1}.
+
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/6-1-1.png}
+    \caption{6-1-1幅度谱}\label{fig:6-1-1}
+\end{figure*}
+
+(2) $\cos(\frac{\pi}{2}t)=\frac{1}{2}(e^{j\frac{\pi}{2}t}+e^{-j\frac{\pi}{2}t})$, 由此可以简化Fourier分解的积分过程, 得到$F(\omega)=\frac{1}{2}\displaystyle\int_{-1}^{1}(e^{j(\frac{\pi}{2}-\omega)t}+e^{-j(\frac{\pi}{2}+\omega)t})\,\mathrm{d}t=\frac{-\cos\omega}{\frac{\pi}{2}-\omega}-\frac{\cos\omega}{\frac{\pi}{2}+\omega}$
+
+(3) $F(\omega)=\displaystyle\int_{-\infty}^{1}e^{j2t}e^{-j\omega t}\,\mathrm{d}t=\frac{1}{j(2-\omega)}e^{j(2-\omega)}$
+
+(4) $F(\omega)=\displaystyle\int_{0}^{+\infty}e^{-2t-j\omega t},\mathrm{d}t-\int_{-\infty}^{0}e^{2t-j\omega t},\,\mathrm{d}t=\frac{1}{2+j\omega}-\frac{1}{2-j\omega}=\frac{-2j\omega}{4+\omega^2}$.
+
+% \task{选做题}
+
+% (3) 
+
+\subsection{傅里叶反变换}
+
+\task{必做题}
+
+(1) $x(t)=\displaystyle\frac{1}{2\pi}\int_{-\infty}^{+\infty}|F(\omega)|e^{j\varphi(\omega)}=\frac{E}{2\pi}\int_{-\omega_0}^{\omega_0}e^{j\omega t_0}\,\mathrm{d}\omega=\frac{E\sin\omega_0t_0}{\pi t_0}$
+
+(2) $x(t)=\displaystyle\frac{3}{2}+\frac{1}{2\pi}\int_{-\infty}^{+\infty}(\frac{1}{j\omega}-\frac{1}{2j\omega+1})=u(t)-\frac{1}{2}e^{-1/2 t}u(t)+1$
+
+\subsection{信号综合分析}
+
+(1) $\displaystyle\int_{-\infty}^{+\infty}F(\omega)e^{j\omega}\,\mathrm{d}\omega=f(1)=0$.
+
+(2) 由于$f(t)$是实信号, 有$R(-\omega)=\frac{1}{2}(F(\omega)+F(-\omega))$, 则其反变换后的结果为$\frac{1}{2}(f(t)+f(-t))$, 即$f(t)$的偶分量, 波形如图\ref{fig:6-3-2}.
+
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/6-3-2.png}
+    \caption{6-3-2波形}\label{fig:6-3-2}
+\end{figure*}
+
+\subsection{傅里叶变换性质}
+
+(1) $f_1(t-3\tau)$的Fourier变换为$F_1(\omega)e^{-j\omega\cdot3\tau}$, $\cos(\omega_0t)$的Fourier变换为$\pi(\delta(\omega-\omega_0)+\delta(\omega+\omega_0))$, 则$F_2(\omega)=(F_1(\omega)e^{-j\omega\cdot3\tau})*(\pi(\delta(\omega-\omega_0)+\delta(\omega+\omega_0)))=E\tau\pi\operatorname{Sa}^2(\frac{\omega\tau}{4})\cos(3\tau\omega_0)$
+
+(2)
+
+A. $\displaystyle\frac{1}{2}F(\frac{\omega}{2})\cdot e^{-j\omega\cdot2.5}$
+
+B. $\displaystyle -\frac{j}{4}F'(-\frac{\omega}{2})-F(-\frac{\omega}{2})$
+
+C. $\displaystyle \frac{j\omega}{3}F(\frac{\omega}{3})$.
+
+D. $\displaystyle -j\pi [F(\omega-\omega_0)-F(\omega+\omega_0)]$
+
