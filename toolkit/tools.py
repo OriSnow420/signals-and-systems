@@ -74,9 +74,9 @@ def np_convolution(fun_1, fun_2, left_lim=-5, right_lim=5):
         return convolve_fun(x)
     return convolve
 
-def draw_dirac(ax, title, points=[]):
+def draw_dirac(ax, title, points=[], height=1, xlim=(-2, 3), ylim=(-0.5, 1.5)):
     for point in points:
-        arrow = patches.FancyArrowPatch((point, 0), (point, 1), arrowstyle="-|>",
+        arrow = patches.FancyArrowPatch((point, 0), (point, height), arrowstyle="-|>",
                                         mutation_scale=25, color='blue')
         ax.add_patch(arrow)
 
@@ -85,8 +85,8 @@ def draw_dirac(ax, title, points=[]):
     ax.set_title(title)
     ax.grid(True)
 
-    ax.set_xlim(-2, 3)
-    ax.set_ylim(-0.5, 1.5)
+    ax.set_xlim(xlim)
+    ax.set_ylim(ylim)
     ax.axvline(0, color='black', linewidth=1)
     ax.axhline(0, color='black', linewidth=1)
 
