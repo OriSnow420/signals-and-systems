@@ -1,0 +1,89 @@
+\section{Homework 11}
+
+\subsection{Laplace变换性质}
+
+\subsubsection{求信号的初值和终值}
+
+(1) $F(0_+)=\displaystyle\lim_{s\to\infty}sF(s)=1,F(\infty)=\lim_{s\to0}sF(s)=0$.
+
+(2) $F(s)=\displaystyle\frac{4s^3+2s^2+s+6}{(s+1)(s^2+3)}=4+\frac{-2s^2-11s-6}{(s+1)(s^2+3)}$. 因此$f(0_+)=-2$. $f(\infty)=0$.
+
+(3) $F(s)=\displaystyle\frac{2s^3+3}{(s+2)(s+5)}=2s-14+\frac{78s+143}{(s+2)(s+5)}$, 因此$f(0_+)=78$. $f(\infty)=0$.
+
+(4) 此为下列信号延迟$t=2$的结果: $F(s)=\displaystyle\frac{1}{s^2(s-1)^3}$, 因此初值$F(0_+)=0$. 由于$F(s)$在$s=1$有一处极点, 且在$j\omega$轴上有一个二阶极点, 因此终值不存在.
+
+\subsection{Z变换性质}
+
+\subsubsection{利用Z变换性质求解序列的Z变换}
+
+(1) 注意到$2^nu[n]$的Z变换为$\dfrac{z}{z-2}$. 由Z变换的线性加权性质: $X(z)=-z \dfrac{\mathrm d}{\mathrm dz}\dfrac{z}{z-2}=\dfrac{2z}{(z-2)^2}, |z|>2$.
+
+(2) 因为$3^nu[n]$的Z变换为$\dfrac{z}{z-3}$, 由位移性质: $X(z)=\dfrac{1}{z^3(z-3)}$
+
+(3) $x[n]=2^n\cdot\left\{\displaystyle\sum_{n=0}^{+\infty}(-1)^k\cdot u[n-k]\right\}=2^{n-1}\left(1+(-1)^{n+1}\right)u[n]=2^{n-1}u[n]+(-2)^{n-1}u[n]$. 因此其Z变换为$X(z)=\dfrac{2z}{z^2-4}$.
+
+\subsubsection{初值和终值定理}
+
+(1) $x[0]=\displaystyle\lim_{z\to\infty}X(z)=0$, $x[\infty]=\displaystyle\lim_{z\to1}(z-1)X(z)=0$.
+
+(2) $X(z)=z^2-0.8z+0.99+\dfrac{-0.922z^2+0.2265z+0.1485}{(z+1)(z-0.5)(z+0.3)}$. 因此$x[z]=\displaystyle_{z\to\infty}X(z)=0.99$. $x[\infty]=\displaystyle\lim_{z\to1}(z-1)X(z)=0$.
+
+\subsubsection{求序列的卷积和乘积的Z变换}
+
+(1) 其$Z$变换为$X(z)H(z)=\dfrac{z}{z-2}\cdot z^{-2}\cdot\dfrac{z}{z-1}=\dfrac{1}{(z-1)(z-2)}$.
+
+(2) 结果为$\dfrac{1}{2\pi j}\displaystyle\int_{C}^{}X(v)Y(\frac{z}{v})v^{-1}\,\mathrm{d}v=1$.
+
+\subsubsection{Z变换的尺度特性}
+
+\begin{align*}
+    X(z)=&\sum_{n=-\infty}^{+\infty}x[n]z^{-n} \\
+    =&\sum_{n=-\infty}^{+\infty}x[3n]z^{-3n}+x[3n+1]z^{-3n-1}+x[3n+2]z^{-3n-2}
+\end{align*}
+
+令$\Omega=e^{j\frac{2}{3}\pi}$, 则$\Omega^2+\Omega=-1,\Omega^3=1$. 因此可得到方程组
+
+\begin{align*}
+    X(z^{1/3})=&\sum_{n=-\infty}^{+\infty}x[3n]z^{-n}+x[3n+1]z^{-n-\frac{1}{3}}+x[3n+2]z^{-n-\frac{2}{3}} \\
+    X(z^{1/3}\Omega)=&\sum_{n=-\infty}^{+\infty}x[3n]z^{-n}+x[3n+1]z^{-n-\frac{1}{3}}\Omega^2+x[3n+2]z^{-n-\frac{2}{3}}\Omega \\
+    X(z^{1/3}\Omega^2)=&\sum_{n=-\infty}^{+\infty}x[3n]z^{-n}+x[3n+1]z^{-n-\frac{1}{3}}\Omega+x[3n+2]z^{-n-\frac{2}{3}}\Omega^2
+\end{align*}
+
+三式相加, 得到$$X_1(z)=\displaystyle\frac{1}{3}\left[X(z^{1/3})+X(z^{1/3}e^{j\frac{2}{3}\pi})+X(z^{1/3}e^{j\frac{4}{3}\pi})\right].$$
+
+$X_2(z)=\displaystyle\sum_{k=-\infty}^{+\infty}x[k]z^{-3k}=X(z^{3})$.
+
+\subsection{利用Laplace变换和Z变换求解微分和差分方程}
+
+(1) 
+% 两边做Laplace变换, 得到\begin{align*}
+%     &Y(s)(s^2+5s+4)-(s+5)y(0_-)-y'(0_-)=\frac{1}{s} \\\Rightarrow& Y(s)=\frac{1}{s(s+1)(s+4)}=\frac{1}{4s}-\frac{1}{3(s+1)}+\frac{1}{12(s+4)}
+% \end{align*}
+
+两边做Laplace变换, 得到\begin{align*}
+    &Y(s)(s^2+5s+4)-(s+5)y(0_-)-y'(0_-)=\frac{1}{s} \\
+    \Rightarrow& Y(s)=-\frac{5}{4(s+4)}+\frac{4}{s+1}+\frac{1}{4s}
+\end{align*}
+
+因此$y(t)=-\frac{5}{4}e^{-4t}+4e^{-t}+\frac{1}{4}$.
+
+若令$y(0_-)=y'(0_-)=0$, 得到零状态响应的Laplace变换:\begin{align*}
+    &Y(s)(s^2+5s+4)-(s+5)y(0_-)-y'(0_-)=\frac{1}{s} \\\Rightarrow& Y(s)=\frac{1}{s(s+1)(s+4)}=\frac{1}{4s}-\frac{1}{3(s+1)}+\frac{1}{12(s+4)}
+\end{align*}
+
+因此$y_{zs}(t)=\frac{1}{4}-\frac{1}{3}e^{-t}+\frac{1}{12}e^{-4t}$.
+
+$y_{zi}(t)=y(t)-y_{zs}(t)=\frac{13}{3}e^{-t}-\frac{4}{3}e^{-4t}$.
+
+此问题中, 强迫响应为常数项$1/4$, 自由响应为$\frac{5}{4}e^{-4t}+4e^{-t}$.
+
+(2) 两边做单边Z变换, 得到
+\begin{align*}
+    Y(z)=\frac{1}{7}\frac{z}{z-\frac{1}{2}}-\frac{36}{7}\frac{z}{z+3}
+\end{align*}
+
+因此完全解为$y[n]=\frac{1}{7}2^{-n}-\frac{36}{7}(-3)^n$.
+
+零状态响应$Y[z]=X[z]$, $y[n]=x[n]=3^n$, 零输入响应$y[n]=\frac{1}{7}2^{-n}-\frac{36}{7}(-3)^n-3^n$. 强迫相应$y=\frac{1}{7}2^{-n}$, 自由响应$-\frac{36}{7}(-3)^n$
+
+
