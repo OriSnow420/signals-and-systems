@@ -9,21 +9,44 @@ import math
 
 plt.rc("text", usetex=True)
 
+
 def base_fun(x):
     return np.cos(2 * np.pi * x) * np.exp(-x)
+
 
 def fun_1(x):
     return np.piecewise(
         x,
-        [(x >= 0) & (x <= 1.25), (x > 1.25) & (x <= 2.5), (x >= -1.25) & (x < 0), (x >= -2.5) & (x < -1.25)],
-        [base_fun, lambda x: -base_fun(2.5 - x), lambda x: -base_fun(-x), lambda x: base_fun(x + 2.5)]
+        [
+            (x >= 0) & (x <= 1.25),
+            (x > 1.25) & (x <= 2.5),
+            (x >= -1.25) & (x < 0),
+            (x >= -2.5) & (x < -1.25),
+        ],
+        [
+            base_fun,
+            lambda x: -base_fun(2.5 - x),
+            lambda x: -base_fun(-x),
+            lambda x: base_fun(x + 2.5),
+        ],
     )
+
 
 def fun_2(x):
     return np.piecewise(
         x,
-        [(x >= 0) & (x <= 1.25), (x > 1.25) & (x <= 2.5), (x >= -1.25) & (x < 0), (x >= -2.5) & (x < -1.25)],
-        [base_fun, lambda x: -base_fun(2.5 - x), lambda x: base_fun(-x), lambda x: -base_fun(x + 2.5)]
+        [
+            (x >= 0) & (x <= 1.25),
+            (x > 1.25) & (x <= 2.5),
+            (x >= -1.25) & (x < 0),
+            (x >= -2.5) & (x < -1.25),
+        ],
+        [
+            base_fun,
+            lambda x: -base_fun(2.5 - x),
+            lambda x: base_fun(-x),
+            lambda x: -base_fun(x + 2.5),
+        ],
     )
 
 

@@ -1,4 +1,5 @@
 """Example from https://matplotlib.org/stable/users/getting_started/."""
+
 import matplotlib.pyplot as plt
 import numpy as np
 

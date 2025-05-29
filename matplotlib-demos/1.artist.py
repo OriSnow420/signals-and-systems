@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-fig, ax = plt.subplots() # A figure with a single axes
+fig, ax = plt.subplots()  # A figure with a single axes
 
 # What is an axes? An axes is an area where points in it can be expressed as an
 # (x, y) - pair(2D case). Similar to a sub-picture.

@@ -8,14 +8,24 @@ from toolkit.tools import *
 
 plt.rc("text", usetex=True)
 
+
 def fun_1(x):
-    return ((2 ** 0.5) * 2) * (np.heaviside(x - 2, 1) - np.heaviside(x - 4, 0)
-                               + np.heaviside(x + 4, 1) - np.heaviside(x + 2, 0))
+    return ((2**0.5) * 2) * (
+        np.heaviside(x - 2, 1)
+        - np.heaviside(x - 4, 0)
+        + np.heaviside(x + 4, 1)
+        - np.heaviside(x + 2, 0)
+    )
+
 
 def fun_2(x):
-    return (np.pi / 4) * (np.heaviside(x - 2, 1) - np.heaviside(x - 4, 0)
-                          - np.heaviside(x + 4, 1) + np.heaviside(x + 2, 0))
-    
+    return (np.pi / 4) * (
+        np.heaviside(x - 2, 1)
+        - np.heaviside(x - 4, 0)
+        - np.heaviside(x + 4, 1)
+        + np.heaviside(x + 2, 0)
+    )
+
 
 fig, axs = plt.subplots(1, 2, figsize=(10, 5))
 

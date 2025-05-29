@@ -28,7 +28,9 @@ for i in range(8):
         r"$t=" + str(i * 0.5 - 1.5) + r"$",
     )
 
-draw_convolve(axs[2][2], fun_1, fun_2, -1, 0, -0.5, 2, r"$f_1*f_2(t)$", [-0.5, -1.5, 2-1e-4])
+draw_convolve(
+    axs[2][2], fun_1, fun_2, -1, 0, -0.5, 2, r"$f_1*f_2(t)$", [-0.5, -1.5, 2 - 1e-4]
+)
 
 file_name, _ = os.path.splitext(os.path.basename(__file__))
 plt.tight_layout()

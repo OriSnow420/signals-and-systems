@@ -39,7 +39,7 @@ def sampled_g(x):
             [
                 basic_g,
                 lambda x: basic_g(x - 2 * OMEGA_S),
-                lambda x: basic_g(x + 2 * OMEGA_S)
+                lambda x: basic_g(x + 2 * OMEGA_S),
             ],
         )
     )
@@ -55,7 +55,7 @@ draw_fun(
     [],
     False,
     r"$\omega$",
-    r"$G_s(\omega)$"
+    r"$G_s(\omega)$",
 )
 
 file_name, _ = os.path.splitext(os.path.basename(__file__))

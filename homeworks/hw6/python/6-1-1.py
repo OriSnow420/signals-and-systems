@@ -12,8 +12,12 @@ plt.rc("text", usetex=True)
 E = 3
 TAU = 8
 
+
 def fun_1(x):
-    return np.abs(E / (x * TAU)) * np.sqrt(1 + (2 / np.abs(x)) * np.abs(np.sin(x * TAU / 2)))
+    return np.abs(E / (x * TAU)) * np.sqrt(
+        1 + (2 / np.abs(x)) * np.abs(np.sin(x * TAU / 2))
+    )
+
 
 fig, ax = plt.subplots(1, 1, figsize=(10, 5))
 

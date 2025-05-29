@@ -9,7 +9,7 @@ def fun_1(x):
     return np.piecewise(
         x,
         [x == 0, x == 1, (x != 0) & (x != 1)],
-        [lambda x: 1, lambda x: 2, lambda x: 0]
+        [lambda x: 1, lambda x: 2, lambda x: 0],
     )
 
 

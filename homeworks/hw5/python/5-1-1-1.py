@@ -8,11 +8,14 @@ from toolkit.tools import *
 
 plt.rc("text", usetex=True)
 
+
 def fun_1(x):
     return np.abs(2 / np.pi * np.sin(x * np.pi / 2) / x)
 
+
 def fun_2(x):
-    return - np.pi / 2 * np.sin(x * np.pi / 2)
+    return -np.pi / 2 * np.sin(x * np.pi / 2)
+
 
 fig, axs = plt.subplots(1, 2, figsize=(10, 5))
 

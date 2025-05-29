@@ -8,11 +8,14 @@ from toolkit.tools import *
 
 plt.rc("text", usetex=True)
 
+
 def fun_1(x):
     return 1 - 0.5 * np.cos(x * np.pi)
 
+
 def fun_2(x):
-    return - np.pi / 2 * (x+1e-6) / (x+1e-6)
+    return -np.pi / 2 * (x + 1e-6) / (x + 1e-6)
+
 
 fig, axs = plt.subplots(1, 2, figsize=(10, 5))
 
