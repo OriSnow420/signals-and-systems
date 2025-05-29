@@ -1,15 +1,28 @@
-import matplotlib.pyplot as plt
 from matplotlib import patches
 import numpy as np
 from scipy.integrate import quad
 
+
 def get_odd(fun):
-    return lambda x : (fun(x) - fun(-x)) / 2.0
+    return lambda x: (fun(x) - fun(-x)) / 2.0
+
 
 def get_even(fun):
-    return lambda x : (fun(x) + fun(-x)) / 2.0
+    return lambda x: (fun(x) + fun(-x)) / 2.0
 
-def draw_fun(ax, fun, domain, title, mark_points=[], dotted=False, xlabel=r"$t$", ylabel=r"$f(t)$"):
+
+def draw_fun(
+    ax,
+    fun,
+    domain,
+    title,
+    mark_points=None,
+    dotted=False,
+    xlabel=r"$t$",
+    ylabel=r"$f(t)$",
+):
+    if mark_points is None:
+        mark_points = []
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.grid(True)
@@ -17,7 +30,7 @@ def draw_fun(ax, fun, domain, title, mark_points=[], dotted=False, xlabel=r"$t$"
 
     codomain = fun(domain)
     if dotted:
-        ax.plot(domain, codomain, linestyle=':')
+        ax.plot(domain, codomain, linestyle=":")
     else:
         ax.plot(domain, codomain)
 
@@ -25,11 +38,31 @@ def draw_fun(ax, fun, domain, title, mark_points=[], dotted=False, xlabel=r"$t$"
         value = fun(point)
         if isinstance(value, tuple):
             value = value[0]
-        ax.scatter([point], [value], color='red')
-        ax.annotate(f'({point:.2f}, {value:.2f})', xy=(point, value),
-                    xytext=(point + 0.1, value), fontsize=16)
+        ax.scatter([point], [value], color="red")
+        ax.annotate(
+            f"({point:.2f}, {value:.2f})",
+            xy=(point, value),
+            xytext=(point + 0.1, value),
+            fontsize=16,
+        )
 
-def draw_convolve(ax, fun1, fun2, left1, right1, left2, right2, title, mark_points=[], dotted=False, xlabel=r"$t$", ylabel=r"$f(t)$"):
+
+def draw_convolve(
+    ax,
+    fun1,
+    fun2,
+    left1,
+    right1,
+    left2,
+    right2,
+    title,
+    mark_points=None,
+    dotted=False,
+    xlabel=r"$t$",
+    ylabel=r"$f(t)$",
+):
+    if mark_points is None:
+        mark_points = []
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.grid(True)
@@ -37,7 +70,6 @@ def draw_convolve(ax, fun1, fun2, left1, right1, left2, right2, title, mark_poin
 
     length1 = int((right1 - left1) * 400)
     length2 = int((right2 - left2) * 400)
-    length = min(length1, length2)
 
     domain1 = np.linspace(left1, right1, length1)
     domain2 = np.linspace(left2, right2, length2)
@@ -49,19 +81,25 @@ def draw_convolve(ax, fun1, fun2, left1, right1, left2, right2, title, mark_poin
     right = right1 + right2
 
     if dotted:
-        ax.plot(np.linspace(left, right, num), codomain, linestyle=':')
+        ax.plot(np.linspace(left, right, num), codomain, linestyle=":")
     else:
         ax.plot(np.linspace(left, right, num), codomain)
 
     for point in mark_points:
         index = int((point - left) / (right - left) * num)
         value = codomain[index]
-        ax.scatter([point], [value], color='red')
-        ax.annotate(f'({point:.3f}, {value:.3f})', xy=(point, value),
-                    xytext=(point + 0.1, value), fontsize=16)
+        ax.scatter([point], [value], color="red")
+        ax.annotate(
+            f"({point:.3f}, {value:.3f})",
+            xy=(point, value),
+            xytext=(point + 0.1, value),
+            fontsize=16,
+        )
+
 
 def get_convolution_fun(fun_1, fun_2, left_lim=-10, right_lim=10):
-    return lambda x: quad(lambda t: fun_1(t) * fun_2(x-t), left_lim, right_lim)
+    return lambda x: quad(lambda t: fun_1(t) * fun_2(x - t), left_lim, right_lim)
+
 
 def np_convolution(fun_1, fun_2, left_lim=-5, right_lim=5):
     def convolve(x):
@@ -72,12 +110,21 @@ def np_convolution(fun_1, fun_2, left_lim=-5, right_lim=5):
                 result.append(convolve_fun(i))
             return np.array(result)
         return convolve_fun(x)
+
     return convolve
 
-def draw_dirac(ax, title, points=[], height=1, xlim=(-2, 3), ylim=(-0.5, 1.5)):
+
+def draw_dirac(ax, title, points=None, height=1, xlim=(-2, 3), ylim=(-0.5, 1.5)):
+    if points is None:
+        points = []
     for point in points:
-        arrow = patches.FancyArrowPatch((point, 0), (point, height), arrowstyle="-|>",
-                                        mutation_scale=25, color='blue')
+        arrow = patches.FancyArrowPatch(
+            (point, 0),
+            (point, height),
+            arrowstyle="-|>",
+            mutation_scale=25,
+            color="blue",
+        )
         ax.add_patch(arrow)
 
     ax.set_xlabel(r"$t$")
@@ -87,16 +134,25 @@ def draw_dirac(ax, title, points=[], height=1, xlim=(-2, 3), ylim=(-0.5, 1.5)):
 
     ax.set_xlim(xlim)
     ax.set_ylim(ylim)
-    ax.axvline(0, color='black', linewidth=1)
-    ax.axhline(0, color='black', linewidth=1)
+    ax.axvline(0, color="black", linewidth=1)
+    ax.axhline(0, color="black", linewidth=1)
+
 
 def naive_draw_dirac(ax, points, height=1):
     for point in points:
-        arrow = patches.FancyArrowPatch((point, 0), (point, height), arrowstyle="-|>",
-                                        mutation_scale=25, color='blue')
+        arrow = patches.FancyArrowPatch(
+            (point, 0),
+            (point, height),
+            arrowstyle="-|>",
+            mutation_scale=25,
+            color="blue",
+        )
         ax.add_patch(arrow)
 
-def draw_discrete_signal(ax, fun, domain, title, mark_points=[]):
+
+def draw_discrete_signal(ax, fun, domain, title, mark_points=None):
+    if mark_points is None:
+        mark_points = []
     codomain = fun(domain)
     ax.grid(True)
     ax.set_xlabel(r"$n$")
@@ -107,10 +163,15 @@ def draw_discrete_signal(ax, fun, domain, title, mark_points=[]):
 
     for point in mark_points:
         value = fun(point)
-        ax.scatter([point], [value], color='red')
-        ax.annotate(f'({point:.2f}, {value:.2f})', xy=(point, value),
-                    xytext=(point + 0.1, value), fontsize=16)
-        
+        ax.scatter([point], [value], color="red")
+        ax.annotate(
+            f"({point:.2f}, {value:.2f})",
+            xy=(point, value),
+            xytext=(point + 0.1, value),
+            fontsize=16,
+        )
+
+
 def draw_discrete_list(ax, codomain, domain, title):
     ax.grid(True)
     ax.set_xlabel(r"$n$")
@@ -119,7 +180,7 @@ def draw_discrete_list(ax, codomain, domain, title):
 
     print(codomain)
     ax.stem(domain, codomain)
-    
+
 
 def iterative_solve_convolution(fun_x, fun_y, num):
     result = []
@@ -129,3 +190,19 @@ def iterative_solve_convolution(fun_x, fun_y, num):
             minus += fun_x(n - m) * h_m
         result.append((fun_y(n) - minus) / fun_x(0))
     return result
+
+
+def get_amplitude(s_fun, z_transform=False):
+    return (
+        (lambda x: np.abs(s_fun(x * 1.0j)))
+        if not z_transform
+        else (lambda x: np.abs(s_fun(np.e ** (x * 1.0j))))
+    )
+
+
+def get_angle(s_fun, z_transform=False):
+    return (
+        (lambda x: np.angle(s_fun(x * 1.0j)))
+        if not z_transform
+        else (lambda x: np.angle(s_fun(np.e ** (x * 1.0j))))
+    )
